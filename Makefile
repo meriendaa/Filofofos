@@ -12,9 +12,10 @@
 
 NAME = philo
 
-SRC = src/main.c
+SRC = src/philo.c \
+		src/init_data.c
 
-OBJ	= $(addprefix objs/,$(SRC:.c=.o))
+OBJ	= $(SRC:.c=.o)
 
 CC = gcc
 
@@ -22,24 +23,17 @@ CFLAGS  = -Wall -Wextra -Werror
 
 HEADER = ./include/philo.h
 
-objs/%.o:src/%.c
-	@mkdir -p $(dir $@)
-	@$(CC) -c $(CFLAGS) -o $@ $^
-
-
 all: $(NAME)
 
 $(NAME):$(OBJ) $(HEADER)
-		$(CC) $(OBJ) -o $(NAME)
+		$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
 clean:
-	@rm -rf $(OBJS_DIR)
-	@rm -rf ./objs
+	rm -rf $(OBJ)
 
 fclean:
-	@rm -f ${NAME}
+	rm -rf $(NAME)
 
-re:
-	fclean all
+re: fclean all
 
 .PHONY: all re clean fclean

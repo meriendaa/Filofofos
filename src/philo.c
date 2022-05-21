@@ -14,14 +14,6 @@
 #include "../include/philo.h"
 
 
-int issdigit(int num)
-{
-	if (num < 48 || num > 57)
-		return (0);
-	return (1);
-}
-
-
 int validate_arg(int argc, char **argv)
 {
 	int i;
@@ -34,7 +26,7 @@ int validate_arg(int argc, char **argv)
 		j = 0;
 		while (argv[i][j])
 		{
-			if(issdigit(argv[i][j]) == 0){
+			if(ft_isdigit(argv[i][j]) == 0){
 				write(1, "error\n", 6);
 				return (1);
 			}
@@ -60,9 +52,22 @@ int main(int argc, char **argv)
 		return (0);
 
 	data = (t_data *)malloc(sizeof(t_data));
-
-	if (!data || init_data(argc, argv, data))
+	if (!data || !init_data(argc, argv, data))
 		return (0);
+	if (!init_forks(data))
+		return(0);
+	if (!init_philos(data))
+		return(0);
+	//start(data);
+
+/*
+	printf("%d\n", data->num_philos);
+	printf("%d\n", data->time_to_die);
+	printf("%d\n", data->time_to_eat);
+	printf("%d\n", data->time_to_sleep);
+	printf("%d\n", data->dead);
+	printf("%d\n", data->num_eats);
+	*/
 
 	return (0);
 }

@@ -17,12 +17,17 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
+#include <pthread.h>
+
 
 typedef struct s_philos
 {
 	int id;
-	int right_fork;
 	int left_fork;
+	int right_fork;
+	int num_eats;
+	int dead;
 
 	struct s_data *data;
 } t_philos;
@@ -35,10 +40,18 @@ typedef struct s_data
 	int time_to_sleep;
 	int num_eats;
 	int dead;
-	int forks;
+
+	t_philos *philos;
+	pthread_mutex_t *forks;
 
 } t_data;
 
 int validate_arg(int argc, char **argv);
+int init_data(int argc, char **argv, t_data *data);
+int	ft_atoi(const char *str);
+int	ft_isdigit(int c);	
+int init_forks(t_data *data);
+int init_philos(t_data *data);
+
 
 #endif

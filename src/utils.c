@@ -55,3 +55,11 @@ long long int	get_time(void)
 	gettimeofday(&i, NULL);
 	return ((i.tv_sec * 1000) + (i.tv_usec / 1000));
 }
+
+void t_sleep(int num)
+{
+	long long int time;
+	time = get_time();
+	while(num > get_time() - time)
+		usleep(50);
+}

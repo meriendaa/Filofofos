@@ -81,5 +81,6 @@ int	init_philos(t_data *data)
 	data->philos[i].dead = 0;
 	data->philos[i].num_eats = data->num_eats;
 	data->philos[i].data = data;
+
 	return (1);
 }

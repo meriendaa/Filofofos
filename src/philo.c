@@ -47,7 +47,7 @@ int start_threads(t_data *data)
 		return (0);
 	while (i < data->num_philos)
 	{
-		pthread_create(&thread[i], NULL, &routine, (void *)(&data->philos[i]));
+		pthread_create(&thread[i], NULL, &philo_routine, (void *)(&data->philos[i]));
 		i++;
 	}
 	while (1)
@@ -61,6 +61,8 @@ int start_threads(t_data *data)
 		pthread_join(thread[i], NULL);
 		i++;
 	}
+	free(thread);
+	return(0);
 }
 
 int	main(int argc, char **argv)
@@ -82,13 +84,5 @@ int	main(int argc, char **argv)
 	if (!init_philos(data))
 		return (0);
 	start_threads(data);
-/*
-	printf("%d\n", data->num_philos);
-	printf("%d\n", data->time_to_die);
-	printf("%d\n", data->time_to_eat);
-	printf("%d\n", data->time_to_sleep);
-	printf("%d\n", data->dead);
-	printf("%d\n", data->num_eats);
-	*/
 	return (0);
 }

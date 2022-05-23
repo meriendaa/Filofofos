@@ -1,7 +1,4 @@
-
-
 #include "../include/philo.h"
-
 
 int	ft_isdigit(int c)
 {
@@ -9,7 +6,6 @@ int	ft_isdigit(int c)
 		return (1);
 	return (0);
 }
-
 
 static int	ft_isspace(int c)
 {
@@ -50,4 +46,12 @@ int	ft_atoi(const char *str)
 			return (0);
 	}
 	return (sign * num);
+}
+
+long long int	get_time(void)
+{
+	struct timeval	i;
+
+	gettimeofday(&i, NULL);
+	return ((i.tv_sec * 1000) + (i.tv_usec / 1000));
 }

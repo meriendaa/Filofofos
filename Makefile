@@ -32,7 +32,7 @@ $(NAME):$(OBJ) $(HEADER)
 clean:
 	rm -rf $(OBJ)
 
-fclean:
+fclean: clean
 	rm -rf $(NAME)
 
 re: fclean all

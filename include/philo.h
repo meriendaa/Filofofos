@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #ifndef PHILO_H
 # define PHILO_H
 
@@ -18,6 +17,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
+#include <sys/time.h>
 #include <pthread.h>
 
 
@@ -43,6 +43,7 @@ typedef struct s_data
 	long long int	init_time;
 	t_philos		*philos;
 	pthread_mutex_t	*forks;
+	pthread_mutex_t	message;
 
 } t_data;
 
@@ -54,6 +55,12 @@ int				init_forks(t_data *data);
 int				init_philos(t_data *data);
 long long int	get_time(void);
 int				start_threads(t_data *data);
-
+void			*philo_routine(void *args);
+int				thinking(t_philos *philos);
+int				sleeping(t_philos *philos);
+int				eating(t_philos *philos);
+void			t_sleep(int num);
+void			print_message(t_philos *philos, char *str);
+int				check_philo_dead(t_data *data);
 
 #endif

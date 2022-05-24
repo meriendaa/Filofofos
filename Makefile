@@ -14,7 +14,9 @@ NAME = philo
 
 SRC = src/philo.c \
 		src/init_data.c\
-		src/utils.c
+		src/utils.c \
+		src/routine.c \
+		src/print_message.c 
 
 OBJ	= $(SRC:.c=.o)
 

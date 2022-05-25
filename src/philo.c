@@ -45,6 +45,7 @@ int start_threads(t_data *data)
 	thread = (pthread_t *)malloc(sizeof(pthread_t) * data->num_philos);
 	if (!thread)
 		return (0);
+	data->init_time = get_time();
 	while (++i < data->num_philos)
 	{
 		pthread_create(&thread[i], NULL, &philo_routine, (void *)(&data->philos[i]));

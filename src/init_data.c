@@ -25,7 +25,6 @@ int	init_data(int argc, char **argv, t_data *data)
 	data->time_to_sleep = ft_atoi(argv[4]);
 	data->dead = 0;
 	data->eat_complete = 0;
-	data->init_time = get_time();
 	pthread_mutex_init(&data->message, NULL);
 	pthread_mutex_init(&data->isdead, NULL);
 

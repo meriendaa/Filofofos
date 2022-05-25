@@ -62,7 +62,7 @@ void *philo_routine(void *args)
 	philos = (t_philos *)args;
 	
 	if (philos->id % 2 == 0)
-		t_sleep(200);
+		t_sleep(philos->data->time_to_eat);
 	philos->last_eat = get_time();
 	while (philos->data->dead == 0 && philos->num_eats != 0)
 	{

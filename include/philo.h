@@ -41,9 +41,11 @@ typedef struct s_data
 	int 			num_eats;
 	int 			dead;
 	long long int	init_time;
+	int				eat_complete;
 	t_philos		*philos;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	message;
+	pthread_mutex_t isdead;
 
 } t_data;
 
@@ -62,5 +64,6 @@ int				eating(t_philos *philos);
 void			t_sleep(int num);
 void			print_message(t_philos *philos, char *str);
 int				check_philo_dead(t_data *data);
+void free_info(t_data *data);
 
 #endif

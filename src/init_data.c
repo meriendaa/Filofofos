@@ -24,7 +24,10 @@ int	init_data(int argc, char **argv, t_data *data)
 	data->time_to_eat = ft_atoi(argv[3]);
 	data->time_to_sleep = ft_atoi(argv[4]);
 	data->dead = 0;
+	data->eat_complete = 0;
 	data->init_time = get_time();
+	pthread_mutex_init(&data->message, NULL);
+	pthread_mutex_init(&data->isdead, NULL);
 
 	if (argc == 6)
 	{
@@ -81,6 +84,5 @@ int	init_philos(t_data *data)
 	data->philos[i].dead = 0;
 	data->philos[i].num_eats = data->num_eats;
 	data->philos[i].data = data;
-
 	return (1);
 }

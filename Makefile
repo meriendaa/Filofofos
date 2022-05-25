@@ -16,7 +16,9 @@ SRC = src/philo.c \
 		src/init_data.c\
 		src/utils.c \
 		src/routine.c \
-		src/print_message.c 
+		src/print_message.c \
+		src/philo_dead.c \
+		src/free_info.c
 
 OBJ	= $(SRC:.c=.o)
 

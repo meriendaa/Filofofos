@@ -41,22 +41,19 @@ int start_threads(t_data *data)
 	int i;
 	pthread_t *thread;
 
-	i = 0;
+	i = -1;
 	thread = (pthread_t *)malloc(sizeof(pthread_t) * data->num_philos);
 	if (!thread)
 		return (0);
-	while (i < data->num_philos)
+	while (++i < data->num_philos)
 	{
 		pthread_create(&thread[i], NULL, &philo_routine, (void *)(&data->philos[i]));
-		i++;
-	}/*
-	while (1)
-	{
-		if(check_philo_dead(data) == 0)
+	}
+	while (42)
+		if (check_philo_dead(data))
 			break ;
-	}*/
 	i = 0;
-	while (i < data->num_philos)
+	while (thread[i])
 	{
 		pthread_join(thread[i], NULL);
 		i++;
@@ -77,12 +74,11 @@ int	main(int argc, char **argv)
 	if (validate_arg(argc, argv))
 		return (0);
 	data = (t_data *)malloc(sizeof(t_data));
-	if (!data || !init_data(argc, argv, data))
+	if (!data)
 		return (0);
-	if (!init_forks(data))
-		return (0);
-	if (!init_philos(data))
-		return (0);
+	if(!init_data(argc, argv, data) || !init_forks(data) || !init_philos(data))
+		return(0);
 	start_threads(data);
+	free_info(data);
 	return (0);
 }

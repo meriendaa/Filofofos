@@ -60,14 +60,13 @@ void *philo_routine(void *args)
 	int i;
 
 	philos = (t_philos *)args;
-	philos->last_eat = philos->data->init_time;
+	
 	if (philos->id % 2 == 0)
 		t_sleep(200);
+	philos->last_eat = get_time();
 	while (philos->data->dead == 0 && philos->num_eats != 0)
 	{
-		if (philos->num_eats == 0)
-			break ;
-		if (!eating(philos) || !sleeping(philos) || thinking(philos))
+		if (philos->num_eats == 0 || !eating(philos) || !sleeping(philos) || !thinking(philos))
 			break ;
 	}
 	i = 0;

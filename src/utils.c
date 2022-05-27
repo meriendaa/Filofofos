@@ -68,10 +68,11 @@ long long int	get_time(void)
 	return ((i.tv_sec * 1000) + (i.tv_usec / 1000));
 }
 
-void t_sleep(int num)
+void	t_sleep(int num)
 {
-	long long int time;
+	long long int	time;
+
 	time = get_time();
-	while(num > get_time() - time)
+	while (num > get_time() - time)
 		usleep(50);
 }

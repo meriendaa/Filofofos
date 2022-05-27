@@ -20,9 +20,10 @@ int	check_philo_dead(t_data *data)
 	while (i < data->num_philos)
 	{
 		pthread_mutex_lock(&data->isdead);
-		if ((data->philos[i].last_eat != 0 && data->time_to_die < (int)(get_time() - data->philos[i].last_eat)))
+		if ((data->philos[i].last_eat != 0 && data->time_to_die
+				< (int)(get_time() - data->philos[i].last_eat)))
 		{
-			if(data->dead == 0)
+			if (data->dead == 0)
 				print_message(&data->philos[i], "died");
 			data->dead = 1;
 			return (1);

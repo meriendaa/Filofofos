@@ -12,8 +12,7 @@
 
 #include "../include/philo.h"
 
-
-int eating(t_philos *philos)
+int	eating(t_philos *philos)
 {
 	pthread_mutex_lock(&philos->data->forks[philos->left_fork]);
 	if (philos->data->dead == 1)
@@ -36,7 +35,7 @@ int eating(t_philos *philos)
 	return (1);
 }
 
-int sleeping(t_philos *philos)
+int	sleeping(t_philos *philos)
 {
 	if (philos->data->dead == 1)
 		return (0);
@@ -45,28 +44,27 @@ int sleeping(t_philos *philos)
 	return (1);
 }
 
-int thinking(t_philos *philos)
+int	thinking(t_philos *philos)
 {
-	if(philos->data->dead == 1)
+	if (philos->data->dead == 1)
 		return (0);
 	print_message(philos, "is thinking");
 	return (1);
-} 
+}
 
-
-void *philo_routine(void *args)
+void	*philo_routine(void *args)
 {
-	t_philos *philos;
-	int i;
+	t_philos	*philos;
+	int			i;
 
 	philos = (t_philos *)args;
-	
 	if (philos->id % 2 == 0)
 		t_sleep(philos->data->time_to_eat);
 	philos->last_eat = get_time();
 	while (philos->data->dead == 0 && philos->num_eats != 0)
 	{
-		if (philos->num_eats == 0 || !eating(philos) || !sleeping(philos) || !thinking(philos))
+		if (philos->num_eats == 0 || !eating(philos)
+			|| !sleeping(philos) || !thinking(philos))
 			break ;
 	}
 	i = 0;

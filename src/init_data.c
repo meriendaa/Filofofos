@@ -27,7 +27,6 @@ int	init_data(int argc, char **argv, t_data *data)
 	data->eat_complete = 0;
 	pthread_mutex_init(&data->message, NULL);
 	pthread_mutex_init(&data->isdead, NULL);
-
 	if (argc == 6)
 	{
 		data->num_eats = ft_atoi(argv[5]);

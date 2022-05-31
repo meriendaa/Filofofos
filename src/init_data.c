@@ -15,29 +15,22 @@
 int	init_data(int argc, char **argv, t_data *data)
 {
 	data->num_philos = ft_atoi(argv[1]);
-	if (data->num_philos < 1)
+	data->time_to_die = ft_atoi(argv[2]);
+	data->time_to_eat = ft_atoi(argv[3]);
+	data->time_to_sleep = ft_atoi(argv[4]);
+	if (data->num_philos < 1 || data->time_to_die < 1
+		|| data->time_to_eat < 1 || data->time_to_sleep < 1)
 	{
 		write(1, "error\n", 6);
 		return (0);
 	}
-	data->time_to_die = ft_atoi(argv[2]);
-	data->time_to_eat = ft_atoi(argv[3]);
-	data->time_to_sleep = ft_atoi(argv[4]);
 	data->dead = 0;
 	data->eat_complete = 0;
 	pthread_mutex_init(&data->message, NULL);
 	pthread_mutex_init(&data->isdead, NULL);
+	data->num_eats = -1;
 	if (argc == 6)
-	{
-		data->num_eats = ft_atoi(argv[5]);
-		if (data->num_eats < 1)
-		{
-			write(1, "error\n", 6);
-			return (0);
-		}
-	}
-	else
-		data->num_eats = -1;
+		data->num_eats += (ft_atoi(argv[5]) + 1);
 	return (1);
 }
 
